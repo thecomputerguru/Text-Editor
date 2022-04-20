@@ -85,9 +85,12 @@ font_family= tk.StringVar()
 font_box= ttk.Combobox(tool_bar, width=30, textvariable=font_family, state="readonly")
 font_box["values"]= font_tuple
 if platform.system() == "Linux":
-    font_box.current(font_tuple.index(font_tuple[0]))
+    try:
+        font_box.current(font_tuple.index("Monospace"))
+    except ValueError:
+        font_box.current(font_tuple.index(font_tuple[0]))
 else:
-    font_box.current(font_tuple.index("Arial"))    
+    font_box.current(font_tuple.index("Arial"))
 font_box.grid(row=0,column=0,padx=5)
 
 
